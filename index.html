@@ -24,9 +24,8 @@ body{
   background:var(--navy);
   background-image:
     linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(47,107,255,.28) 0%, rgba(47,107,255,.08) 38%, rgba(47,107,255,0) 65%);
-  background-size:32px 32px, 32px 32px, 100% 100%;
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:32px 32px;
   color:var(--white);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
@@ -35,13 +34,48 @@ body{
 }
 h1{font-family:'Space Grotesk',sans-serif;font-weight:400}
 strong,b{font-weight:400}
+
+/* ---------- entrance ---------- */
+.intro{
+  position:fixed;inset:0;z-index:50;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  animation:intro-out .6s ease 1.15s forwards;
+  pointer-events:none;
+}
+.intro svg{width:min(240px,60vw);height:auto}
+.intro .draw{
+  fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:draw 1s ease forwards;
+}
+.intro .d2{animation-delay:.12s}
+.intro .d3{animation-delay:.22s}
+.intro .pop{
+  fill:none;stroke:var(--blue);stroke-width:3;
+  opacity:0;
+  animation:pop .4s ease .55s forwards;
+}
+.intro .pop-solid{fill:var(--blue);stroke:none}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+@keyframes intro-out{to{opacity:0;visibility:hidden}}
+
+/* content rises in after the symbol draws */
+.rise{opacity:0;animation:rise .8s ease forwards}
+.r1{animation-delay:1.15s}
+.r2{animation-delay:1.28s}
+.r3{animation-delay:1.41s}
+.r4{animation-delay:1.54s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- layout ---------- */
 .screen{
   height:100dvh;
-  max-width:520px;
+  max-width:640px;
   margin:0 auto;
-  padding:24px 22px;
-  padding-top:max(24px, env(safe-area-inset-top));
-  padding-bottom:max(20px, env(safe-area-inset-bottom));
+  padding:48px 28px 84px;
+  padding-top:max(48px, env(safe-area-inset-top));
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -52,34 +86,33 @@ strong,b{font-weight:400}
 .label{
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:12.5px;
+  letter-spacing:.14em;
   color:var(--white);
-  opacity:.75;
+  opacity:.7;
   display:inline-flex;
   align-items:center;
-  gap:9px;
-  border:1px solid rgba(255,255,255,.22);
-  border-radius:999px;
-  padding:7px 15px;
-  margin-bottom:28px;
+  gap:10px;
+  margin-bottom:44px;
 }
 .label .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
 h1{
-  font-size:clamp(38px,10vw,58px);
-  line-height:1.1;
-  letter-spacing:-.01em;
-  margin-bottom:18px;
+  font-size:clamp(52px,13vw,88px);
+  line-height:1.0;
+  letter-spacing:-.02em;
+  margin-bottom:32px;
   text-wrap:balance;
 }
-h1 .u{border-bottom:3px solid var(--blue)}
+h1 .ln{display:block}
+h1 .blue{color:var(--blue)}
 .sub{
-  font-size:16px;
+  font-size:17px;
   color:var(--white);
   opacity:.82;
-  max-width:34ch;
-  margin-bottom:34px;
+  max-width:36ch;
+  margin-bottom:56px;
 }
-form{width:100%;max-width:380px}
-.field{margin-bottom:12px}
+form{width:100%;max-width:400px}
+.field{margin-bottom:16px}
 input{
   width:100%;
   font:inherit;
@@ -89,7 +122,7 @@ input{
   background:var(--mist);
   border:1.5px solid transparent;
   border-radius:10px;
-  padding:14px 15px;
+  padding:17px 16px;
 }
 input::placeholder{color:rgba(11,31,75,.5)}
 input:focus{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
@@ -98,44 +131,67 @@ button.join{
   font-family:'Space Grotesk',sans-serif;
   font-weight:400;
   font-size:18px;
+  letter-spacing:.01em;
   background:var(--blue);
   color:var(--white);
   border:none;
   border-radius:10px;
-  padding:15px;
+  padding:17px;
   cursor:pointer;
-  margin-top:4px;
+  margin-top:8px;
+  transition:transform .25s ease, filter .25s ease;
 }
-button.join:hover{filter:brightness(1.08)}
+button.join:hover{filter:brightness(1.12);transform:translateY(-1px)}
 button.join:focus-visible{outline:3px solid var(--white);outline-offset:3px}
-button.join:active{transform:translateY(1px)}
-.micro{font-size:13px;opacity:.7;margin-top:16px}
+button.join:active{transform:translateY(0)}
+.micro{font-size:13px;opacity:.65;margin-top:22px;letter-spacing:.02em}
 .msg{
   display:none;
   font-size:14px;
-  margin-top:12px;
+  margin-top:14px;
   border-radius:8px;
   padding:10px 12px;
 }
 .msg.err{display:block;background:var(--white);color:var(--navy)}
 .done{
   width:100%;
-  max-width:380px;
+  max-width:400px;
   border:1px solid rgba(255,255,255,.22);
   border-radius:12px;
-  padding:30px 22px;
-  font-size:17px;
+  padding:36px 24px;
+  font-size:18px;
 }
+
+/* ---------- marquee ---------- */
+.marquee{
+  position:absolute;
+  bottom:26px;left:0;right:0;
+  overflow:hidden;
+  white-space:nowrap;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;
+  letter-spacing:.28em;
+  color:var(--white);
+  opacity:.32;
+  user-select:none;
+}
+.marquee span{
+  display:inline-block;
+  padding-right:0;
+  animation:slide 32s linear infinite;
+}
+@keyframes slide{to{transform:translateX(-50%)}}
+
 .mark{
   position:absolute;
-  bottom:18px;
-  right:20px;
+  top:24px;
+  right:26px;
   opacity:.9;
 }
 .export{
   position:absolute;
-  bottom:20px;
-  left:20px;
+  bottom:22px;
+  left:22px;
   background:none;
   border:none;
   font-family:'JetBrains Mono',ui-monospace,monospace;
@@ -144,21 +200,42 @@ button.join:active{transform:translateY(1px)}
   opacity:.4;
   cursor:pointer;
   padding:4px;
+  z-index:2;
 }
 .export:hover{opacity:.8}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:12px;top:12px;background:var(--white);color:var(--navy);padding:10px 16px;border-radius:8px}
-@media(prefers-reduced-motion:reduce){*{transition:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .intro{display:none}
+  .rise{opacity:1;animation:none}
+  .marquee span{animation:none}
+  button.join{transition:none}
+}
 </style>
 </head>
 <body>
 <a class="skip" href="#email">skip to signup</a>
-<main class="screen">
-  <p class="label"><span class="dot" aria-hidden="true"></span>commit history v1.0</p>
-  <h1>hoodies for people who <span class="u">merge at 2am.</span></h1>
-  <p class="sub">join the club. founding members get early access.</p>
 
-  <form id="signup" novalidate aria-label="join the waitlist">
+<div class="intro" aria-hidden="true">
+  <svg viewBox="0 0 120 60" fill="none">
+    <circle class="pop" cx="14" cy="12" r="7"/>
+    <circle class="pop" cx="14" cy="48" r="7"/>
+    <path class="draw" pathLength="1" d="M21 12 L62 30"/>
+    <path class="draw d2" pathLength="1" d="M21 48 L62 30"/>
+    <path class="draw d3" pathLength="1" d="M62 30 L98 30"/>
+    <circle class="pop pop-solid" cx="105" cy="30" r="6"/>
+  </svg>
+</div>
+
+<main class="screen">
+  <svg class="mark" width="56" height="28" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#2F6BFF" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#2F6BFF" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#2F6BFF" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#2F6BFF"/></svg>
+
+  <p class="label rise r1"><span class="dot" aria-hidden="true"></span>commit history v1.0</p>
+  <h1 class="rise r2" aria-label="hoodies for people who merge at 2am."><span class="ln">hoodies for people</span><span class="ln">who <span class="blue">merge</span> at</span><span class="ln">2am.</span></h1>
+  <p class="sub rise r3">join the club. founding members get early access.</p>
+
+  <form id="signup" class="rise r4" novalidate aria-label="join the waitlist">
     <div class="field">
       <label for="email" style="position:absolute;left:-9999px">email</label>
       <input id="email" name="email" type="email" autocomplete="email" placeholder="your email" required>
@@ -173,9 +250,9 @@ button.join:active{transform:translateY(1px)}
   <div class="done" id="done" hidden>
     <p>you're in. we'll email you before the drop.</p>
   </div>
-  <p class="micro" id="micro">no spam, ever.</p>
+  <p class="micro rise r4" id="micro">no spam, ever.</p>
 
-  <svg class="mark" width="64" height="32" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#2F6BFF" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#2F6BFF" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#2F6BFF" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#2F6BFF"/></svg>
+  <div class="marquee" aria-hidden="true"><span>merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;</span></div>
   <button class="export" id="export" type="button" title="download signups as csv">export</button>
 </main>
 
