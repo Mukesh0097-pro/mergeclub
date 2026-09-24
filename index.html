@@ -3,263 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>mergeclub — hoodies for people who merge at 2am</title>
-<meta name="description" content="join the club. founding members get early access.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%2316130E'/%3E%3Ccircle cx='14' cy='12' r='7' fill='none' stroke='%23C19A5B' stroke-width='2.5'/%3E%3Ccircle cx='14' cy='48' r='7' fill='none' stroke='%23C19A5B' stroke-width='2.5'/%3E%3Cpath d='M21 12 L62 30 M21 48 L62 30 M62 30 L98 30' fill='none' stroke='%23C19A5B' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%23C19A5B'/%3E%3C/svg%3E">
+<title>MERGECLUB — hoodies for developers</title>
+<meta name="description" content="commit history v1.0. every hoodie is a dev inside joke. join the club.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23F3F0E8'/%3E%3Ccircle cx='14' cy='12' r='7' fill='none' stroke='%232457FF' stroke-width='2.5'/%3E%3Ccircle cx='14' cy='48' r='7' fill='none' stroke='%232457FF' stroke-width='2.5'/%3E%3Cpath d='M21 12 L62 30 M21 48 L62 30 M62 30 L98 30' fill='none' stroke='%232457FF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%232457FF'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --espresso:#16130E;
-  --brass:#C19A5B;
-  --ivory:#F2EBDD;
+  --bone:#F3F0E8;
+  --ink:#111111;
+  --blue:#2457FF;
+  --gray:#6B6B67;
+  --line:#D8D5CC;
+  --panel:#E8E3D7;
+  --max:1440px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-family:'Satoshi',-apple-system,'Segoe UI',Roboto,sans-serif;
   font-weight:400;
-  background:var(--espresso);
-  background-image:
-    linear-gradient(rgba(242,235,221,.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(242,235,221,.055) 1px, transparent 1px);
-  background-size:32px 32px;
-  color:var(--ivory);
-  line-height:1.6;
+  background:var(--bone);
+  color:var(--ink);
+  line-height:1.5;
   -webkit-font-smoothing:antialiased;
-  overflow:hidden;
-  height:100dvh;
 }
-h1{font-family:'Fraunces',Georgia,serif;font-weight:400}
-strong,b{font-weight:400}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+a{color:inherit}
 
-/* ---------- entrance ---------- */
-.intro{
-  position:fixed;inset:0;z-index:50;
-  background:var(--espresso);
-  display:flex;align-items:center;justify-content:center;
-  animation:intro-out .6s ease 1.15s forwards;
-  pointer-events:none;
+/* ---------- nav ---------- */
+.nav{
+  border-bottom:1px solid var(--line);
+  background:var(--bone);
+  position:sticky;top:0;z-index:20;
 }
-.intro svg{width:min(240px,60vw);height:auto}
-.intro .draw{
-  fill:none;stroke:var(--brass);stroke-width:3;stroke-linecap:round;
-  stroke-dasharray:1;stroke-dashoffset:1;
-  animation:draw 1s ease forwards;
+.nav-in{
+  max-width:var(--max);margin:0 auto;
+  padding:0 20px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
 }
-.intro .d2{animation-delay:.12s}
-.intro .d3{animation-delay:.22s}
-.intro .pop{
-  fill:none;stroke:var(--brass);stroke-width:3;
-  opacity:0;
-  animation:pop .4s ease .55s forwards;
+.wordmark{font-weight:900;font-size:19px;letter-spacing:.01em;text-decoration:none}
+.nav-links{display:none;gap:28px}
+.nav-links a{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
+  letter-spacing:.08em;text-decoration:none;color:var(--ink);
+  position:relative;padding:4px 0;
 }
-.intro .pop-solid{fill:var(--brass);stroke:none}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes pop{from{opacity:0}to{opacity:1}}
-@keyframes intro-out{to{opacity:0;visibility:hidden}}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--ink);transform:scaleX(0);transform-origin:left;
+  transition:transform .22s ease;
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+@media(min-width:860px){.nav-links{display:flex}.nav-in{padding:0 48px}}
+.cart{
+  background:none;border:none;cursor:pointer;padding:8px;color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
+}
+.cart:hover{color:var(--blue)}
+.cart svg{display:block}
 
-/* content rises in after the symbol draws */
-.rise{opacity:0;animation:rise .8s ease forwards}
-.r1{animation-delay:1.15s}
-.r2{animation-delay:1.28s}
-.r3{animation-delay:1.41s}
-.r4{animation-delay:1.54s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-/* ---------- layout ---------- */
-.screen{
-  height:100dvh;
-  max-width:640px;
-  margin:0 auto;
-  padding:48px 28px 84px;
-  padding-top:max(48px, env(safe-area-inset-top));
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+/* ---------- hero ---------- */
+.hero{border-bottom:1px solid var(--line)}
+.hero-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr;
+}
+@media(min-width:960px){
+  .hero-grid{grid-template-columns:45% 55%}
+}
+.hero-left{
+  padding:48px 20px 40px;
+  border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center;
   position:relative;
 }
-.label{
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:12.5px;
-  letter-spacing:.14em;
-  color:var(--ivory);
-  opacity:.7;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:44px;
+@media(min-width:960px){
+  .hero-left{padding:72px 48px 64px 64px;border-bottom:none;border-right:1px solid var(--line)}
 }
-.label .dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:none}
+.drop-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
+  letter-spacing:.08em;color:var(--gray);
+  display:flex;align-items:center;gap:10px;margin-bottom:22px;
+}
+.drop-tag::before{content:"";width:28px;height:1px;background:var(--blue)}
 h1{
-  font-size:clamp(52px,13vw,88px);
-  line-height:1.0;
-  letter-spacing:-.02em;
-  margin-bottom:32px;
-  text-wrap:balance;
+  font-weight:800;
+  font-size:clamp(48px,7.5vw,104px);
+  line-height:.98;letter-spacing:-.03em;
+  margin-bottom:24px;text-wrap:balance;
 }
-h1 .ln{display:block}
-h1 .accent{color:var(--brass)}
-.sub{
-  font-size:17px;
-  color:var(--ivory);
-  opacity:.82;
-  max-width:36ch;
-  margin-bottom:56px;
-}
-form{width:100%;max-width:400px}
-.field{margin-bottom:16px}
+.sub{font-size:17px;font-weight:500;margin-bottom:6px}
+.sub2{font-size:15px;color:var(--gray);margin-bottom:32px;max-width:38ch}
+form{max-width:400px}
+.field{margin-bottom:12px}
 input{
+  width:100%;font:inherit;font-size:15px;
+  color:var(--ink);background:var(--bone);
+  border:1px solid var(--line);border-radius:0;
+  padding:14px 15px;
+}
+input::placeholder{color:var(--gray)}
+input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.btn{
   width:100%;
-  font:inherit;
-  font-size:16px;
-  font-weight:400;
-  color:var(--espresso);
-  background:var(--ivory);
-  border:1.5px solid transparent;
-  border-radius:10px;
-  padding:17px 16px;
+  font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;
+  letter-spacing:.06em;
+  background:var(--blue);color:#fff;border:1px solid var(--blue);
+  padding:15px;cursor:pointer;margin-top:4px;
+  transition:background .2s ease,color .2s ease;
 }
-input::placeholder{color:rgba(22,19,14,.5)}
-input:focus{outline:3px solid var(--brass);outline-offset:2px;border-color:var(--brass)}
-button.join{
-  width:100%;
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:400;
-  font-size:18px;
-  letter-spacing:.01em;
-  background:var(--brass);
-  color:var(--espresso);
-  border:none;
-  border-radius:10px;
-  padding:17px;
-  cursor:pointer;
-  margin-top:8px;
-  transition:transform .25s ease, filter .25s ease;
+.btn:hover{background:var(--ink);border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.msg{display:none;font-family:'IBM Plex Mono',monospace;font-size:13px;margin-top:12px;padding:10px 12px;border:1px solid var(--ink)}
+.msg.err{display:block;color:var(--ink)}
+.meta-row{
+  display:flex;gap:0;margin-top:44px;
+  border-top:1px solid var(--line);padding-top:18px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--gray);
 }
-button.join:hover{filter:brightness(1.08);transform:translateY(-1px)}
-button.join:focus-visible{outline:3px solid var(--ivory);outline-offset:3px}
-button.join:active{transform:translateY(0)}
-.micro{font-size:13px;opacity:.65;margin-top:22px;letter-spacing:.02em}
-.msg{
-  display:none;
-  font-size:14px;
-  margin-top:14px;
-  border-radius:8px;
-  padding:10px 12px;
+.meta-row div{flex:1}
+.meta-row div+div{border-left:1px solid var(--line);padding-left:16px}
+
+/* ---------- visual panel ---------- */
+.hero-right{position:relative;overflow:hidden;background:var(--panel);min-height:420px}
+.hero-right svg.scene{display:block;width:100%;height:100%;min-height:420px}
+@media(min-width:960px){.hero-right{min-height:640px}.hero-right svg.scene{min-height:640px}}
+.corner-note{
+  position:absolute;top:20px;right:22px;text-align:right;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+  color:var(--ink);line-height:2;opacity:.75;
 }
-.msg.err{display:block;background:var(--ivory);color:var(--espresso)}
-.done{
-  width:100%;
-  max-width:400px;
-  border:1px solid rgba(242,235,221,.25);
-  border-radius:12px;
-  padding:36px 24px;
-  font-size:18px;
+.corner-note::after{
+  content:"";display:block;width:1px;height:56px;background:var(--ink);
+  margin:8px 2px 0 auto;opacity:.5;
 }
+.plus{position:absolute;font-family:'IBM Plex Mono',monospace;color:var(--ink);opacity:.6;font-size:16px}
 
 /* ---------- marquee ---------- */
 .marquee{
-  position:absolute;
-  bottom:26px;left:0;right:0;
-  overflow:hidden;
-  white-space:nowrap;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:12px;
-  letter-spacing:.28em;
-  color:var(--ivory);
-  opacity:.32;
-  user-select:none;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;white-space:nowrap;user-select:none;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;
+  color:var(--gray);padding:14px 0;
 }
-.marquee span{
-  display:inline-block;
-  padding-right:0;
-  animation:slide 32s linear infinite;
-}
+.marquee span{display:inline-block;animation:slide 30s linear infinite}
 @keyframes slide{to{transform:translateX(-50%)}}
 
-.mark{
-  position:absolute;
-  top:24px;
-  right:26px;
-  opacity:.9;
+/* ---------- footer ---------- */
+footer{max-width:var(--max);margin:0 auto;padding:28px 20px 34px;
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--gray);
 }
-.export{
-  position:absolute;
-  bottom:22px;
-  left:22px;
-  background:none;
-  border:none;
-  font-family:'JetBrains Mono',ui-monospace,monospace;
-  font-size:11px;
-  color:var(--ivory);
-  opacity:.4;
-  cursor:pointer;
-  padding:4px;
-  z-index:2;
+@media(min-width:960px){footer{padding:28px 64px 34px}}
+footer .status{display:flex;align-items:center;gap:8px}
+footer .status::before{content:"";width:7px;height:7px;background:var(--blue)}
+.export{background:none;border:none;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.export:hover{color:var(--ink)}
+.done{
+  max-width:400px;border:1px solid var(--ink);padding:26px 22px;
+  font-size:17px;font-weight:500;
 }
-.export:hover{opacity:.8}
 .skip{position:absolute;left:-9999px}
-.skip:focus{left:12px;top:12px;background:var(--ivory);color:var(--espresso);padding:10px 16px;border-radius:8px}
-
+.skip:focus{left:12px;top:12px;background:var(--ink);color:var(--bone);padding:10px 16px;z-index:99}
+.rise{opacity:0;animation:rise .5s ease forwards}
+.r1{animation-delay:.05s}.r2{animation-delay:.15s}.r3{animation-delay:.25s}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){
-  .intro{display:none}
   .rise{opacity:1;animation:none}
   .marquee span{animation:none}
-  button.join{transition:none}
+  .nav-links a::after{transition:none}
 }
 </style>
 </head>
 <body>
 <a class="skip" href="#email">skip to signup</a>
 
-<div class="intro" aria-hidden="true">
-  <svg viewBox="0 0 120 60" fill="none">
-    <circle class="pop" cx="14" cy="12" r="7"/>
-    <circle class="pop" cx="14" cy="48" r="7"/>
-    <path class="draw" pathLength="1" d="M21 12 L62 30"/>
-    <path class="draw d2" pathLength="1" d="M21 48 L62 30"/>
-    <path class="draw d3" pathLength="1" d="M62 30 L98 30"/>
-    <circle class="pop pop-solid" cx="105" cy="30" r="6"/>
-  </svg>
-</div>
-
-<main class="screen">
-  <svg class="mark" width="56" height="28" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#C19A5B" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#C19A5B" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#C19A5B" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#C19A5B"/></svg>
-
-  <p class="label rise r1"><span class="dot" aria-hidden="true"></span>commit history v1.0</p>
-  <h1 class="rise r2" aria-label="hoodies for people who merge at 2am."><span class="ln">hoodies for people</span><span class="ln">who <span class="accent">merge</span> at</span><span class="ln">2am.</span></h1>
-  <p class="sub rise r3">join the club. founding members get early access.</p>
-
-  <form id="signup" class="rise r4" novalidate aria-label="join the waitlist">
-    <div class="field">
-      <label for="email" style="position:absolute;left:-9999px">email</label>
-      <input id="email" name="email" type="email" autocomplete="email" placeholder="your email" required>
-    </div>
-    <div class="field">
-      <label for="handle" style="position:absolute;left:-9999px">instagram or whatsapp (optional)</label>
-      <input id="handle" name="handle" type="text" autocomplete="off" placeholder="instagram or whatsapp">
-    </div>
-    <button class="join" type="submit">join the club</button>
-    <div class="msg" id="msg" role="status" aria-live="polite"></div>
-  </form>
-  <div class="done" id="done" hidden>
-    <p>you're in. we'll email you before the drop.</p>
+<header class="nav">
+  <div class="nav-in">
+    <a class="wordmark" href="#top">MERGECLUB</a>
+    <nav class="nav-links" aria-label="primary">
+      <a href="#join">SHOP</a>
+      <a href="#join">STORY</a>
+      <a href="#join">LOOKBOOK</a>
+      <a href="#join">CONTACT</a>
+    </nav>
+    <button class="cart" type="button" aria-label="cart, 0 items">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20.5 8H6"/></svg>
+      <span class="mono" id="cart-n">0</span>
+    </button>
   </div>
-  <p class="micro rise r4" id="micro">no spam, ever.</p>
+</header>
 
-  <div class="marquee" aria-hidden="true"><span>merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;merge + commit + ship +&nbsp;</span></div>
-  <button class="export" id="export" type="button" title="download signups as csv">export</button>
+<main id="top">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-grid">
+      <div class="hero-left" id="join">
+        <p class="drop-tag rise r1">DROP_001</p>
+        <h1 id="hero-h" class="rise r2">hoodies<br>for developers.</h1>
+        <p class="sub rise r2">Commit History v1.0</p>
+        <p class="sub2 rise r2">Every hoodie is a dev inside joke.</p>
+        <form id="signup" class="rise r3" novalidate aria-label="join the waitlist">
+          <div class="field">
+            <label for="email" style="position:absolute;left:-9999px">email</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="your email" required>
+          </div>
+          <div class="field">
+            <label for="handle" style="position:absolute;left:-9999px">instagram or whatsapp (optional)</label>
+            <input id="handle" name="handle" type="text" autocomplete="off" placeholder="instagram or whatsapp">
+          </div>
+          <button class="btn" type="submit">JOIN THE CLUB →</button>
+          <div class="msg" id="msg" role="status" aria-live="polite"></div>
+        </form>
+        <div class="done" id="done" hidden>
+          <p>you're in. we'll email you before the drop.</p>
+        </div>
+        <div class="meta-row rise r3">
+          <div>EST. 2026</div>
+          <div>BUILT BY DEVELOPERS<br>WORN EVERYWHERE</div>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-label="editorial photograph style illustration of a bone MERGECLUB hoodie, back view">
+        <svg class="scene" viewBox="0 0 600 640" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+          <defs>
+            <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0"/><feComposite operator="over" in2="SourceGraphic"/></filter>
+          </defs>
+          <rect width="600" height="640" fill="#E8E3D7"/>
+          <g stroke="#111111" stroke-width="1" opacity="0.18">
+            <line x1="0" y1="120" x2="600" y2="120"/>
+            <line x1="0" y1="520" x2="600" y2="520"/>
+            <line x1="80" y1="0" x2="80" y2="640"/>
+            <line x1="520" y1="0" x2="520" y2="640"/>
+          </g>
+          <!-- figure: back view -->
+          <ellipse cx="300" cy="120" rx="52" ry="58" fill="#1c1a17"/>
+          <path d="M252 108 q6 -34 30 -40 q-4 16 2 26 q10 -20 30 -22 q-2 14 4 22 q12 -12 26 -8 q-6 50 -44 56 q-40 4 -48 -34z" fill="#1c1a17"/>
+          <rect x="282" y="150" width="36" height="30" fill="#8A6F5C"/>
+          <!-- hoodie body -->
+          <path d="M300 175
+                   C 250 175 235 190 225 205
+                   L 170 235 C 150 245 140 260 138 280
+                   L 128 470 C 127 490 140 500 160 500
+                   L 440 500 C 460 500 473 490 472 470
+                   L 462 280 C 460 260 450 245 430 235
+                   L 375 205 C 365 190 350 175 300 175 Z" fill="#EFE9DB" stroke="#111111" stroke-width="2"/>
+          <!-- hood -->
+          <path d="M232 210 C 240 250 265 275 300 275 C 335 275 360 250 368 210
+                   C 350 195 326 188 300 188 C 274 188 250 195 232 210 Z" fill="#E4DCCB" stroke="#111111" stroke-width="2"/>
+          <path d="M245 215 C 252 245 270 262 300 262" fill="none" stroke="#111111" stroke-width="1.5" opacity="0.5"/>
+          <!-- sleeves -->
+          <path d="M170 235 L 128 470" stroke="#111111" stroke-width="1.5" opacity="0.4"/>
+          <path d="M430 235 L 472 470" stroke="#111111" stroke-width="1.5" opacity="0.4"/>
+          <path d="M150 440 L 450 440" stroke="#111111" stroke-width="1" opacity="0.25"/>
+          <path d="M160 500 L 440 500" stroke="#111111" stroke-width="2"/>
+          <!-- back print -->
+          <text x="300" y="330" text-anchor="middle" font-family="Satoshi, sans-serif" font-weight="900" font-size="34" letter-spacing="2" fill="#111111">MERGECLUB</text>
+          <rect x="212" y="344" width="26" height="7" fill="#2457FF"/>
+          <g font-family="IBM Plex Mono, monospace" font-size="17" fill="#111111" text-anchor="middle">
+            <text x="330" y="372">commit</text>
+            <text x="330" y="394">build</text>
+            <text x="330" y="416">ship</text>
+            <text x="330" y="438">repeat</text>
+          </g>
+          <polygon points="215,385 285,360 285,430" fill="none" stroke="#111111" stroke-width="1.5" opacity="0.7"/>
+          <line x1="215" y1="385" x2="260" y2="400" stroke="#111111" stroke-width="1" opacity="0.5"/>
+          <line x1="215" y1="385" x2="255" y2="415" stroke="#111111" stroke-width="1" opacity="0.5"/>
+          <text x="330" y="462" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#111111">v1.0</text>
+          <text x="196" y="300" font-family="IBM Plex Mono, monospace" font-size="18" fill="#111111">+</text>
+          <text x="420" y="330" font-family="IBM Plex Mono, monospace" font-size="18" fill="#111111">+</text>
+          <text x="250" y="478" font-family="IBM Plex Mono, monospace" font-size="18" fill="#111111">+</text>
+          <rect width="600" height="640" filter="url(#grain)" opacity="0.5"/>
+        </svg>
+        <div class="corner-note">CODE<br>COFFEE<br>HOODIES<br>COMMUNITY</div>
+        <span class="plus" style="bottom:120px;right:60px">+</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><span>COMMIT_8472&nbsp;&nbsp;·&nbsp;&nbsp;STATUS: SHIPPED&nbsp;&nbsp;·&nbsp;&nbsp;$ git commit -m "good hoodie"&nbsp;&nbsp;·&nbsp;&nbsp;BUILD_001&nbsp;&nbsp;·&nbsp;&nbsp;COMMIT_8472&nbsp;&nbsp;·&nbsp;&nbsp;STATUS: SHIPPED&nbsp;&nbsp;·&nbsp;&nbsp;$ git commit -m "good hoodie"&nbsp;&nbsp;·&nbsp;&nbsp;BUILD_001&nbsp;&nbsp;·&nbsp;&nbsp;</span></div>
+
+  <footer>
+    <span>MERGECLUB — WEAR THE COMMIT. JOIN THE CLUB.</span>
+    <span class="status">DROP_001 · V1.0</span>
+    <span><button class="export" id="export" type="button">export (.csv)</button></span>
+  </footer>
 </main>
 
 <script>
 (function(){
   "use strict";
-  /* optional backend: set to also save + trigger confirmation email.
-     e.g. const FORM_ENDPOINT = "https://formspree.io/f/xxxx"; leave "" for local-only. */
   const FORM_ENDPOINT = "https://formspree.io/f/xjykowzl";
   const LS_LIST = "mergeclub_waitlist";
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -272,13 +308,11 @@ button.join:active{transform:translateY(0)}
 
   const form = document.getElementById("signup");
   const done = document.getElementById("done");
-  const micro = document.getElementById("micro");
   const msg = document.getElementById("msg");
 
-  // if already joined on this device, show confirmation straight away
   try{
     if(sessionStorage.getItem("mergeclub_joined") === "1"){
-      form.hidden = true; micro.hidden = true; done.hidden = false;
+      form.hidden = true; done.hidden = false;
     }
   }catch(e){}
 
@@ -311,10 +345,14 @@ button.join:active{transform:translateY(0)}
         }).catch(function(){});
       }catch(e){}
     }
+    document.getElementById("cart-n").textContent = String(list.length);
     form.hidden = true;
-    micro.hidden = true;
     done.hidden = false;
   });
+
+  try{
+    document.getElementById("cart-n").textContent = String(load().length);
+  }catch(e){}
 
   document.getElementById("export").addEventListener("click", function(){
     const list = load();
