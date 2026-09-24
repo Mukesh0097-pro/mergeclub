@@ -25,6 +25,6 @@ vercel: import the github repo `Mukesh0097-pro/mergeclub`, deploy. static, no bu
 
 ## brand (strict)
 
-- navy `#0B1F4B` bg, white `#FFFFFF` text, blue `#2F6BFF` button/accents, mist `#EAF0FA` inputs.
+- espresso `#16130E` bg, ivory `#F2EBDD` text/inputs, brass `#C19A5B` accents only.
 - space grotesk headline, inter body, jetbrains mono label. all regular weight.
 - merge motif (two thin blue lines, hollow ends, solid dot) bottom corner + favicon.
