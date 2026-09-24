@@ -5,28 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>mergeclub — hoodies for people who merge at 2am</title>
 <meta name="description" content="join the club. founding members get early access.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%230B1F4B'/%3E%3Ccircle cx='14' cy='12' r='7' fill='none' stroke='%232F6BFF' stroke-width='2.5'/%3E%3Ccircle cx='14' cy='48' r='7' fill='none' stroke='%232F6BFF' stroke-width='2.5'/%3E%3Cpath d='M21 12 L62 30 M21 48 L62 30 M62 30 L98 30' fill='none' stroke='%232F6BFF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%232F6BFF'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%2316130E'/%3E%3Ccircle cx='14' cy='12' r='7' fill='none' stroke='%23C19A5B' stroke-width='2.5'/%3E%3Ccircle cx='14' cy='48' r='7' fill='none' stroke='%23C19A5B' stroke-width='2.5'/%3E%3Cpath d='M21 12 L62 30 M21 48 L62 30 M62 30 L98 30' fill='none' stroke='%23C19A5B' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%23C19A5B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0B1F4B;
-  --blue:#2F6BFF;
-  --white:#FFFFFF;
-  --mist:#EAF0FA;
+  --espresso:#16130E;
+  --brass:#C19A5B;
+  --ivory:#F2EBDD;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-weight:400;
-  background:var(--navy);
+  background:var(--espresso);
   background-image:
-    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    linear-gradient(rgba(242,235,221,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,235,221,.055) 1px, transparent 1px);
   background-size:32px 32px;
-  color:var(--white);
+  color:var(--ivory);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow:hidden;
@@ -38,25 +37,25 @@ strong,b{font-weight:400}
 /* ---------- entrance ---------- */
 .intro{
   position:fixed;inset:0;z-index:50;
-  background:var(--navy);
+  background:var(--espresso);
   display:flex;align-items:center;justify-content:center;
   animation:intro-out .6s ease 1.15s forwards;
   pointer-events:none;
 }
 .intro svg{width:min(240px,60vw);height:auto}
 .intro .draw{
-  fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;
+  fill:none;stroke:var(--brass);stroke-width:3;stroke-linecap:round;
   stroke-dasharray:1;stroke-dashoffset:1;
   animation:draw 1s ease forwards;
 }
 .intro .d2{animation-delay:.12s}
 .intro .d3{animation-delay:.22s}
 .intro .pop{
-  fill:none;stroke:var(--blue);stroke-width:3;
+  fill:none;stroke:var(--brass);stroke-width:3;
   opacity:0;
   animation:pop .4s ease .55s forwards;
 }
-.intro .pop-solid{fill:var(--blue);stroke:none}
+.intro .pop-solid{fill:var(--brass);stroke:none}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes pop{from{opacity:0}to{opacity:1}}
 @keyframes intro-out{to{opacity:0;visibility:hidden}}
@@ -87,14 +86,14 @@ strong,b{font-weight:400}
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:12.5px;
   letter-spacing:.14em;
-  color:var(--white);
+  color:var(--ivory);
   opacity:.7;
   display:inline-flex;
   align-items:center;
   gap:10px;
   margin-bottom:44px;
 }
-.label .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+.label .dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex:none}
 h1{
   font-size:clamp(52px,13vw,88px);
   line-height:1.0;
@@ -103,10 +102,10 @@ h1{
   text-wrap:balance;
 }
 h1 .ln{display:block}
-h1 .blue{color:var(--blue)}
+h1 .accent{color:var(--brass)}
 .sub{
   font-size:17px;
-  color:var(--white);
+  color:var(--ivory);
   opacity:.82;
   max-width:36ch;
   margin-bottom:56px;
@@ -118,22 +117,22 @@ input{
   font:inherit;
   font-size:16px;
   font-weight:400;
-  color:var(--navy);
-  background:var(--mist);
+  color:var(--espresso);
+  background:var(--ivory);
   border:1.5px solid transparent;
   border-radius:10px;
   padding:17px 16px;
 }
-input::placeholder{color:rgba(11,31,75,.5)}
-input:focus{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
+input::placeholder{color:rgba(22,19,14,.5)}
+input:focus{outline:3px solid var(--brass);outline-offset:2px;border-color:var(--brass)}
 button.join{
   width:100%;
   font-family:'Space Grotesk',sans-serif;
   font-weight:400;
   font-size:18px;
   letter-spacing:.01em;
-  background:var(--blue);
-  color:var(--white);
+  background:var(--brass);
+  color:var(--espresso);
   border:none;
   border-radius:10px;
   padding:17px;
@@ -141,8 +140,8 @@ button.join{
   margin-top:8px;
   transition:transform .25s ease, filter .25s ease;
 }
-button.join:hover{filter:brightness(1.12);transform:translateY(-1px)}
-button.join:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+button.join:hover{filter:brightness(1.08);transform:translateY(-1px)}
+button.join:focus-visible{outline:3px solid var(--ivory);outline-offset:3px}
 button.join:active{transform:translateY(0)}
 .micro{font-size:13px;opacity:.65;margin-top:22px;letter-spacing:.02em}
 .msg{
@@ -152,11 +151,11 @@ button.join:active{transform:translateY(0)}
   border-radius:8px;
   padding:10px 12px;
 }
-.msg.err{display:block;background:var(--white);color:var(--navy)}
+.msg.err{display:block;background:var(--ivory);color:var(--espresso)}
 .done{
   width:100%;
   max-width:400px;
-  border:1px solid rgba(255,255,255,.22);
+  border:1px solid rgba(242,235,221,.25);
   border-radius:12px;
   padding:36px 24px;
   font-size:18px;
@@ -171,7 +170,7 @@ button.join:active{transform:translateY(0)}
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:12px;
   letter-spacing:.28em;
-  color:var(--white);
+  color:var(--ivory);
   opacity:.32;
   user-select:none;
 }
@@ -196,7 +195,7 @@ button.join:active{transform:translateY(0)}
   border:none;
   font-family:'JetBrains Mono',ui-monospace,monospace;
   font-size:11px;
-  color:var(--white);
+  color:var(--ivory);
   opacity:.4;
   cursor:pointer;
   padding:4px;
@@ -204,7 +203,7 @@ button.join:active{transform:translateY(0)}
 }
 .export:hover{opacity:.8}
 .skip{position:absolute;left:-9999px}
-.skip:focus{left:12px;top:12px;background:var(--white);color:var(--navy);padding:10px 16px;border-radius:8px}
+.skip:focus{left:12px;top:12px;background:var(--ivory);color:var(--espresso);padding:10px 16px;border-radius:8px}
 
 @media(prefers-reduced-motion:reduce){
   .intro{display:none}
@@ -229,10 +228,10 @@ button.join:active{transform:translateY(0)}
 </div>
 
 <main class="screen">
-  <svg class="mark" width="56" height="28" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#2F6BFF" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#2F6BFF" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#2F6BFF" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#2F6BFF"/></svg>
+  <svg class="mark" width="56" height="28" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#C19A5B" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#C19A5B" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#C19A5B" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#C19A5B"/></svg>
 
   <p class="label rise r1"><span class="dot" aria-hidden="true"></span>commit history v1.0</p>
-  <h1 class="rise r2" aria-label="hoodies for people who merge at 2am."><span class="ln">hoodies for people</span><span class="ln">who <span class="blue">merge</span> at</span><span class="ln">2am.</span></h1>
+  <h1 class="rise r2" aria-label="hoodies for people who merge at 2am."><span class="ln">hoodies for people</span><span class="ln">who <span class="accent">merge</span> at</span><span class="ln">2am.</span></h1>
   <p class="sub rise r3">join the club. founding members get early access.</p>
 
   <form id="signup" class="rise r4" novalidate aria-label="join the waitlist">
