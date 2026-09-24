@@ -100,11 +100,13 @@ a{color:inherit}
   .meta-row{display:none}
 }
 .hero-left{
-  padding:48px 20px 40px;
+  padding:40px 16px 36px;
   border-bottom:1px solid var(--line);
   display:flex;flex-direction:column;justify-content:center;
   position:relative;
 }
+form{width:100%}
+@media(min-width:960px){form{width:100%;max-width:400px}}
 @media(min-width:960px){
   .hero-left{padding:72px 48px 64px max(64px, calc((100vw - 1440px)/2 + 64px));border-bottom:none;border-right:1px solid var(--line)}
 }
@@ -122,7 +124,7 @@ h1{
 }
 .sub{font-size:17px;font-weight:500;margin-bottom:6px}
 .sub2{font-size:15px;color:var(--gray);margin-bottom:32px;max-width:38ch}
-form{max-width:400px}
+form{width:100%;max-width:none}
 .field{margin-bottom:12px}
 input{
   width:100%;font:inherit;font-size:15px;
