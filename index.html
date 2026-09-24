@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>mergeclub — hoodies for people who merge at 2am</title>
+<meta name="description" content="join the club. founding members get early access.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%230B1F4B'/%3E%3Ccircle cx='14' cy='12' r='7' fill='none' stroke='%232F6BFF' stroke-width='2.5'/%3E%3Ccircle cx='14' cy='48' r='7' fill='none' stroke='%232F6BFF' stroke-width='2.5'/%3E%3Cpath d='M21 12 L62 30 M21 48 L62 30 M62 30 L98 30' fill='none' stroke='%232F6BFF' stroke-width='2.5' stroke-linecap='round'/%3E%3Ccircle cx='105' cy='30' r='6' fill='%232F6BFF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1F4B;
+  --blue:#2F6BFF;
+  --white:#FFFFFF;
+  --mist:#EAF0FA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-weight:400;
+  background:var(--navy);
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(47,107,255,.28) 0%, rgba(47,107,255,.08) 38%, rgba(47,107,255,0) 65%);
+  background-size:32px 32px, 32px 32px, 100% 100%;
+  color:var(--white);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+  height:100dvh;
+}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:400}
+strong,b{font-weight:400}
+.screen{
+  height:100dvh;
+  max-width:520px;
+  margin:0 auto;
+  padding:24px 22px;
+  padding-top:max(24px, env(safe-area-inset-top));
+  padding-bottom:max(20px, env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+.label{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12.5px;
+  color:var(--white);
+  opacity:.75;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  padding:7px 15px;
+  margin-bottom:28px;
+}
+.label .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+h1{
+  font-size:clamp(38px,10vw,58px);
+  line-height:1.1;
+  letter-spacing:-.01em;
+  margin-bottom:18px;
+  text-wrap:balance;
+}
+h1 .u{border-bottom:3px solid var(--blue)}
+.sub{
+  font-size:16px;
+  color:var(--white);
+  opacity:.82;
+  max-width:34ch;
+  margin-bottom:34px;
+}
+form{width:100%;max-width:380px}
+.field{margin-bottom:12px}
+input{
+  width:100%;
+  font:inherit;
+  font-size:16px;
+  font-weight:400;
+  color:var(--navy);
+  background:var(--mist);
+  border:1.5px solid transparent;
+  border-radius:10px;
+  padding:14px 15px;
+}
+input::placeholder{color:rgba(11,31,75,.5)}
+input:focus{outline:3px solid var(--blue);outline-offset:2px;border-color:var(--blue)}
+button.join{
+  width:100%;
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:400;
+  font-size:18px;
+  background:var(--blue);
+  color:var(--white);
+  border:none;
+  border-radius:10px;
+  padding:15px;
+  cursor:pointer;
+  margin-top:4px;
+}
+button.join:hover{filter:brightness(1.08)}
+button.join:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+button.join:active{transform:translateY(1px)}
+.micro{font-size:13px;opacity:.7;margin-top:16px}
+.msg{
+  display:none;
+  font-size:14px;
+  margin-top:12px;
+  border-radius:8px;
+  padding:10px 12px;
+}
+.msg.err{display:block;background:var(--white);color:var(--navy)}
+.done{
+  width:100%;
+  max-width:380px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:12px;
+  padding:30px 22px;
+  font-size:17px;
+}
+.mark{
+  position:absolute;
+  bottom:18px;
+  right:20px;
+  opacity:.9;
+}
+.export{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  background:none;
+  border:none;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  color:var(--white);
+  opacity:.4;
+  cursor:pointer;
+  padding:4px;
+}
+.export:hover{opacity:.8}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--white);color:var(--navy);padding:10px 16px;border-radius:8px}
+@media(prefers-reduced-motion:reduce){*{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#email">skip to signup</a>
+<main class="screen">
+  <p class="label"><span class="dot" aria-hidden="true"></span>commit history v1.0</p>
+  <h1>hoodies for people who <span class="u">merge at 2am.</span></h1>
+  <p class="sub">join the club. founding members get early access.</p>
+
+  <form id="signup" novalidate aria-label="join the waitlist">
+    <div class="field">
+      <label for="email" style="position:absolute;left:-9999px">email</label>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="your email" required>
+    </div>
+    <div class="field">
+      <label for="handle" style="position:absolute;left:-9999px">instagram or whatsapp (optional)</label>
+      <input id="handle" name="handle" type="text" autocomplete="off" placeholder="instagram or whatsapp">
+    </div>
+    <button class="join" type="submit">join the club</button>
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+  </form>
+  <div class="done" id="done" hidden>
+    <p>you're in. we'll email you before the drop.</p>
+  </div>
+  <p class="micro" id="micro">no spam, ever.</p>
+
+  <svg class="mark" width="64" height="32" viewBox="0 0 120 60" fill="none" aria-hidden="true"><circle cx="14" cy="12" r="7" stroke="#2F6BFF" stroke-width="3"/><circle cx="14" cy="48" r="7" stroke="#2F6BFF" stroke-width="3"/><path d="M21 12 L62 30 M21 48 L62 30 M62 30 L98 30" stroke="#2F6BFF" stroke-width="3" stroke-linecap="round"/><circle cx="105" cy="30" r="6.5" fill="#2F6BFF"/></svg>
+  <button class="export" id="export" type="button" title="download signups as csv">export</button>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  /* optional backend: set to also save + trigger confirmation email.
+     e.g. const FORM_ENDPOINT = "https://formspree.io/f/xxxx"; leave "" for local-only. */
+  const FORM_ENDPOINT = "https://formspree.io/f/xjykowzl";
+  const LS_LIST = "mergeclub_waitlist";
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function load(){
+    try{ const v = JSON.parse(localStorage.getItem(LS_LIST)); return Array.isArray(v) ? v : []; }
+    catch(e){ return []; }
+  }
+  function save(list){ try{ localStorage.setItem(LS_LIST, JSON.stringify(list)); }catch(e){} }
+
+  const form = document.getElementById("signup");
+  const done = document.getElementById("done");
+  const micro = document.getElementById("micro");
+  const msg = document.getElementById("msg");
+
+  // if already joined on this device, show confirmation straight away
+  try{
+    if(sessionStorage.getItem("mergeclub_joined") === "1"){
+      form.hidden = true; micro.hidden = true; done.hidden = false;
+    }
+  }catch(e){}
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    const email = (document.getElementById("email").value || "").trim().toLowerCase();
+    const handle = (document.getElementById("handle").value || "").trim();
+
+    if(!EMAIL_RE.test(email)){
+      msg.className = "msg err";
+      msg.textContent = "that email looks off. check it and try again.";
+      return;
+    }
+    const list = load();
+    if(list.some(function(r){ return (r.email || "").toLowerCase() === email; })){
+      msg.className = "msg err";
+      msg.textContent = "you are already on the list. we will email you before the drop.";
+      return;
+    }
+    const row = { email: email, handle: handle, ts: new Date().toISOString() };
+    list.push(row);
+    save(list);
+    try{ sessionStorage.setItem("mergeclub_joined", "1"); }catch(e){}
+    if(FORM_ENDPOINT){
+      try{
+        fetch(FORM_ENDPOINT, {
+          method:"POST",
+          headers:{"Content-Type":"application/json","Accept":"application/json"},
+          body: JSON.stringify(row)
+        }).catch(function(){});
+      }catch(e){}
+    }
+    form.hidden = true;
+    micro.hidden = true;
+    done.hidden = false;
+  });
+
+  document.getElementById("export").addEventListener("click", function(){
+    const list = load();
+    const rows = [["email","handle","joined_at"]];
+    list.forEach(function(r){ rows.push([r.email || "", r.handle || "", r.ts || ""]); });
+    const csv = rows.map(function(r){
+      return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(",");
+    }).join("\n");
+    const blob = new Blob([csv], {type:"text/csv"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "mergeclub-waitlist.csv";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  });
+})();
+</script>
+</body>
+</html>
