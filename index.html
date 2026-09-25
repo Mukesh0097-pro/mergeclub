@@ -21,7 +21,7 @@
   --max:1440px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html,body{height:100%;overflow-x:hidden}
 body{
   font-family:'Satoshi',-apple-system,'Segoe UI',Roboto,sans-serif;
   font-weight:400;
@@ -100,15 +100,16 @@ a{color:inherit}
   .meta-row{display:none}
 }
 .hero-left{
-  padding:40px 16px 36px;
+  padding:48px 20px 40px;
   border-bottom:1px solid var(--line);
   display:flex;flex-direction:column;justify-content:center;
   position:relative;
+  width:100%;max-width:560px;margin:0 auto;
 }
 form{width:100%}
 @media(min-width:960px){form{width:100%;max-width:400px}}
 @media(min-width:960px){
-  .hero-left{padding:72px 48px 64px max(64px, calc((100vw - 1440px)/2 + 64px));border-bottom:none;border-right:1px solid var(--line)}
+  .hero-left{padding:72px 48px 64px max(64px, calc((100vw - 1440px)/2 + 64px));border-bottom:none;border-right:1px solid var(--line);max-width:none;margin:0}
 }
 .drop-tag{
   font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
@@ -118,16 +119,17 @@ form{width:100%}
 .drop-tag::before{content:"";width:28px;height:1px;background:var(--blue)}
 h1{
   font-weight:800;
-  font-size:clamp(48px,7.5vw,104px);
-  line-height:.98;letter-spacing:-.03em;
+  font-size:clamp(44px,13.5vw,104px);
+  line-height:.96;letter-spacing:-.035em;
   margin-bottom:24px;text-wrap:balance;
+  overflow-wrap:break-word;max-width:100%;
 }
 .sub{font-size:17px;font-weight:500;margin-bottom:6px}
 .sub2{font-size:15px;color:var(--gray);margin-bottom:32px;max-width:38ch}
 form{width:100%;max-width:none}
 .field{margin-bottom:12px}
 input{
-  width:100%;font:inherit;font-size:15px;
+  width:100%;font:inherit;font-size:16px;
   color:var(--ink);background:var(--bone);
   border:1px solid var(--line);border-radius:0;
   padding:14px 15px;
@@ -155,8 +157,8 @@ input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--
 .meta-row div+div{border-left:1px solid var(--line);padding-left:16px}
 
 /* ---------- visual panel ---------- */
-.hero-right{position:relative;overflow:hidden;background:var(--bone);min-height:420px;padding:12px;display:flex;flex-direction:column}
-.hero-right img.scene{display:block;width:100%;flex:1;min-height:0;object-fit:cover;border:1px solid var(--line);transition:transform .25s ease}
+.hero-right{position:relative;overflow:hidden;background:var(--bone);min-height:320px;padding:12px;display:flex;flex-direction:column}
+.hero-right img.scene{display:block;width:100%;flex:1;min-height:0;object-fit:cover;border:1px solid var(--line);transition:transform .25s ease;aspect-ratio:4/5}
 .hero-right:hover img.scene{transform:scale(1.02)}
 @media(min-width:960px){.hero-right{min-height:640px}.hero-right img.scene{min-height:640px}}
 .corner-note{
@@ -223,7 +225,7 @@ input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--
     <div class="hero-grid">
       <div class="hero-left" id="join">
         <p class="drop-tag rise r1">DROP_001</p>
-        <h1 id="hero-h" class="rise r2">hoodies<br>for developers.</h1>
+        <h1 id="hero-h" class="rise r2">hoodies for<br>developers.</h1>
         <p class="sub rise r2">Commit History v1.0</p>
         <p class="sub2 rise r2">Every hoodie is a dev inside joke.</p>
         <form id="signup" class="rise r3" novalidate aria-label="join the waitlist">
